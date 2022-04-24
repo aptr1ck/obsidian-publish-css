@@ -24,11 +24,62 @@
   --shadow: 1px 1px 3px #88888888;
   --color-dark: #3E3831 !important;
   --color-accent: #17a2b8 !important;
+  --color-green-lightest: rgba(255, 255, 0, 0.4);
   --text-normal: #3E3831 !important;
+  --md-color-highlight-text: var(--text-normal);
+  --md-color-highlight-bg: rgba(255, 255, 0, 0.4);
 }
 
 * {
   color: #3E3831 !important;
+}
+
+:root {
+  --h1: 2em;
+  --h2: 1.6em;
+  --h3: 1.37em;
+  --h4: 1.25em;
+  --h5: 1.12em;
+  --h6: 1.12em;
+}
+
+.theme-light {
+  --background-primary: #ffffff;
+  --background-primary-alt: #f5f6f8;
+  --background-secondary: #f2f3f5;
+  --background-secondary-alt: #e3e5e8;
+  --background-modifier-border: #ddd;
+  --background-modifier-form-field: #fff;
+  --background-modifier-form-field-highlighted: #fff;
+  --background-modifier-box-shadow: rgba(0, 0, 0, 0.1);
+  --background-modifier-success: #A4E7C3;
+  --background-modifier-success-rgb: 164, 231, 195;
+  --background-modifier-error: #990000;
+  --background-modifier-error-rgb: 230, 135, 135;
+  --background-modifier-error-hover: #bb0000;
+  --background-modifier-cover: rgba(0, 0, 0, 0.8);
+  --text-accent: #705dcf;
+  --text-accent-hover: #7a6ae6;
+  --text-normal: #2e3338;
+  --text-muted: #888888;
+  --text-muted-rgb: 136, 136, 136;
+  --text-faint: #999999;
+  --text-error: #800000;
+  --text-error-hover: #990000;
+  --text-highlight-bg: rgba(255, 255, 0, 0.4);
+  --text-highlight-bg-active: rgba(255, 128, 0, 0.4);
+  --text-selection: rgba(204, 230, 255, 0.99);
+  --text-on-accent: #f2f2f2;
+  --interactive-normal: #f2f3f5;
+  --interactive-hover: #e9e9e9;
+  --interactive-accent: #7b6cd9;
+  --interactive-accent-rgb: 123, 108, 217;
+  --interactive-accent-hover: #8273e6;
+  --interactive-success: #197300;
+  --scrollbar-active-thumb-bg: rgba(0, 0, 0, 0.2);
+  --scrollbar-bg: rgba(0, 0, 0, 0.05);
+  --scrollbar-thumb-bg: rgba(0, 0, 0, 0.1);
+  --highlight-mix-blend-mode: darken;
 }
 
 /*reset body*/
@@ -41,6 +92,19 @@ body {
   font-kerning: normal;
 }
 
+body {
+  --layer-cover: 5;
+  --layer-sidedock: 10;
+  --layer-status-bar: 15;
+  --layer-popover: 30;
+  --layer-slides: 45;
+  --layer-modal: 50;
+  --layer-notice: 60;
+  --layer-menu: 65;
+  --layer-tooltip: 70;
+  --layer-dragged-item: 80;
+}
+
 .published-container.has-navigation .nav-backdrop {
   background: #f5f5f0;
 }
@@ -50,25 +114,26 @@ body {
   font-size: 1rem;
   line-height: 1.8 !important;
   letter-spacing: 0rem;
-  padding: 0px 40px 20px 40px;
+  padding: 20px 40px 20px 40px;
 }
 
 .markdown-preview-view h1 {
   font-family: var(--font-title);
   font-size: 40px;
-  line-height: 2.2rem;
+  line-height: 1.18rem;
   text-transform: lowercase;
 }
 
 .markdown-preview-view h2 {
   font-family: var(--font-title);
   font-size: 32px;
-  line-height: 2rem;
+  line-height: 1.18rem;
   text-transform: lowercase;
 }
 
 .markdown-preview-view h3 {
   text-transform: lowercase;
+  line-height: 1.18rem;
 }
 
 .markdown-preview-view h1, .markdown-preview-view h2, .markdown-preview-view h3, .markdown-preview-view h4, .markdown-preview-view h5, .markdown-preview-view h6 {
@@ -206,6 +271,7 @@ input[type="number"] {
 }*/
 
 .external-link:hover {
+  color: var(--color-blue) !important;
   text-decoration: underline;
 }
 
@@ -216,7 +282,69 @@ input[type="number"] {
 }
 
 .internal-link:hover {
+  color: var(--color-blue) !important;
   text-decoration: underline;
+}
+
+/* Fix the live preview popup? */
+.hover-popover .markdown-rendered {
+  font-size: 13px;
+  line-height: 1.2;
+}
+.popover.hover-popover {
+  position: absolute;
+  z-index: var(--layer-popover);
+  max-height: 300px;
+  min-height: 100px;
+  width: 400px;
+  overflow: hidden;
+  padding: 10px;
+  padding-bottom: 10px;
+  /*border-bottom: none;*/
+  border-radius: 10px;
+  font-size: 0.85em;
+}
+.popover.hover-popover.mod-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  font-size: 0.85em;
+}
+.popover.hover-popover img {
+  max-width: 400px;
+  height: auto;
+}
+.popover.hover-popover.pdf-embed {
+  width: 600px;
+  height: 800px;
+  max-height: 800px;
+}
+.popover.hover-popover .markdown-embed {
+  height: 300px;
+  font-size: 0.85em;
+  line-height: 1.4;
+}
+.popover.hover-popover .markdown-embed .markdown-embed-content {
+  height: 100%;
+}
+.popover h1 {
+	font-size: 1.5em;
+}
+.popover h2 {
+	font-size: 1.2em;
+}
+.popover h3 {
+	font-size: 1.0em;
+}
+.popover h4 {
+	font-size: 0.9em;
+}
+.popover h5 {
+	font-size: 0.8em;
+}
+.popover h6 {
+	font-size: 0.8em;
 }
 
 /* fix bullets */
@@ -295,19 +423,20 @@ input[type="number"] {
   background: var(--color-gray-lightest-fade);
 }
 
-/* change highlight when selecting an item in the outline - doesn't work yet */
-.obsidian-search-match-highlight {
-  background: var(--color-green-lightest) !important;
-}
-
 /* fix higlight color */
-.markdown-preview-view mark {
-  background-color: var(--color-green-lightest);
-}
-
-/* browser highlight color - doesn't work yet */
-::selection {
-  background: var(--color-purple-lightest) !important;
+/* Highlight [Highlight] */
+mark,
+.cm-s-obsidian span.cm-highlight,
+.markdown-source-view.is-live-preview .cm-header.cm-formatting-highlight,
+.cm-s-obsidian span.cm-quote.cm-highlight,
+.markdown-preview-view mark,
+.markdown-rendered mark,
+.markdown-embed mark {
+  --md-color-highlight-text: var(--text-normal);
+  color: var(--md-color-highlight-text);
+  background: var(--md-color-highlight-bg);
+  padding: 4px 4px;
+  border-radius: 8px;
 }
 
 /* tags */
